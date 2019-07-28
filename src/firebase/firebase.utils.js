@@ -17,7 +17,6 @@ const config = {
 
       const userRef = firestore.doc(`users/${userAuth.uid}`);
       const snapshot  = await userRef.get();
-      console.log(snapshot);
 
       //if user does not exist, create one and store in the database. If there is a snapshot of the user, none is created. This will avoid duplicates
       if(!snapshot.exists){
@@ -39,7 +38,6 @@ const config = {
 
 
 firebase.initializeApp(config);
-
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
