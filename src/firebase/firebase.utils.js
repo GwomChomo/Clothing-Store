@@ -19,7 +19,7 @@ const config = {
       const snapshot  = await userRef.get();
       console.log(snapshot);
 
-      //if user does not exist, create one and store in the database
+      //if user does not exist, create one and store in the database. If there is a snapshot of the user, none is created. This will avoid duplicates
       if(!snapshot.exists){
           const {displayName, email} = userAuth;
           const createdAt = new Date();

@@ -25,11 +25,27 @@ class  App extends React.Component {
   componentDidMount(){
     //open subscription to firebase. Adds an oberver to track changes in the user's sign in state.
     //Must be closed (by calling unsubscribe) when component is unmounted from the DOM. This ensures that there are no memory leaks 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user =>{
-        createUserProfileDocument(user);
-      // this.setState({currentUser: user})
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth =>{
+      //if userauth is not null (i.e if user is logged in), get the user's data from the documentRef object (which returns a snapshot).
+      //The user data is gotten using the .data method of the snapshot. Set local state to the data
+      if(userAuth){
+        const userRef = await createUserProfileDocument(userAuth);
 
-      // console.log(this.state.currentUser);
+        userRef.onSnapshot(snapShot =>this.setState({
+          currentUser: {
+            id: snapShot.id,
+            ...snapShot.data()
+          }
+        })
+        )
+      }
+      else{
+        //if user isn't logged in, set app state to null. 
+        this.setState({
+          currentUser: userAuth
+        })
+      }
+      
     })
   }
 
