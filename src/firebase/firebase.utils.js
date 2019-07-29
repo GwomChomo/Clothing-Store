@@ -31,7 +31,7 @@ const config = {
                 ...additionalData
             })
           }
-          catch(error){console.log("Error creating user", error.message)}
+          catch(error){console.error(error)}
       }
       return userRef;
   }
