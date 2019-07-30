@@ -2,8 +2,8 @@ import React from 'react';
 
 import './cart-item.styles.scss';
 
-const CartItem = ({key, item: {imageUrl, name, quantity, price}}) =>(
-    <div key ={key} className ='cart-item'>
+const CartItem = ({item: {imageUrl, name, quantity, price}}) =>(
+    <div  className ='cart-item'>
         <img alt ='item' src ={imageUrl} />
         <div className ='item-details'> 
             <span className ='name'>{name} </span>
