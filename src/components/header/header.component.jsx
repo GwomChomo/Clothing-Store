@@ -10,8 +10,11 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 //firebase utils
 import {auth} from '../../firebase/firebase.utils';
 
+
 //Redux utils
 import {connect} from 'react-redux';
+import {selectCurrentUser} from '../../redux/user/user.selectors';
+import {selectCartHidden} from '../../redux/cart/cart.selectors';
 
 const Header =({currentUser, hidden})=>(
     <div className ="header">
@@ -36,9 +39,9 @@ const Header =({currentUser, hidden})=>(
 
 )
 
-const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) =>({
-    currentUser,
-    hidden
+const mapStateToProps = (state) =>({
+    currentUser: selectCurrentUser(state),
+    hidden: selectCartHidden(state)
 })
 
 //connect is a Higher Order Component that generates container components. It maps the state of the store as well as the dispatches to the store, to the props of the containers it generates.
