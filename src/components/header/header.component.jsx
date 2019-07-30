@@ -1,5 +1,10 @@
 import React from 'react';
+
+//react router dom
 import {Link} from 'react-router-dom';
+
+
+//styles and assets
 import './header.styles.scss';
 import {ReactComponent as Logo} from '../../assets/crown.svg';
 
@@ -9,7 +14,6 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 //firebase utils
 import {auth} from '../../firebase/firebase.utils';
-
 
 //Redux utils
 import {connect} from 'react-redux';
